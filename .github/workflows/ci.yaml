@@ -1,0 +1,64 @@
+name: Maven CI/CD Pipeline
+
+on:
+  push:
+    branches: "feature/"
+  pull_request:
+    branches: "feature/"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root_pass
+          MYSQL_DATABASE: app
+        ports:
+          - 3307:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Configurar JDK 21
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Aguardar MySQL estar pronto
+        run: |
+          until mysqladmin ping --host=127.0.0.1 --port=3306 --silent; do
+            echo "Esperando MySQL..."
+            sleep 5
+          done
+
+      - name: Build com Maven
+        run: mvn clean install -DskipTests
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/app
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: root_pass
+          SPRING_PROFILES_ACTIVE: dev
+
+
+      - name: Build Docker Image
+        run: docker build -t meuapp:latest .
+
+      - name: Rodar Container Docker
+        run: docker run -d -p 8080:8080 --name meuapp-container meuapp:latest
+
+      - name: Verificar Logs do Container
+        run: docker logs meuapp-container
+
+
+      - name: Parar e Remover Container
+        run: docker stop meuapp-container && docker rm meuapp-container
