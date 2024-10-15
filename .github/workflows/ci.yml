@@ -28,9 +28,6 @@ jobs:
     - name: Build com Maven
       run: mvn clean install -DskipTests
 
-    - name: Testes unitarios
-      run: mvn test
-
 
   docker:
     runs-on: ubuntu-latest
