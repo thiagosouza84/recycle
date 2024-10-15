@@ -63,7 +63,7 @@ jobs:
 
       - name: Aguardar Container estar Pronto
         run: |
-          until curl -s http://localhost:8080/auth | grep '[]'; do
+          until curl -s http://localhost:8080/auth | grep "[]"; do
             echo "Esperando o container..."
             sleep 10
           done
