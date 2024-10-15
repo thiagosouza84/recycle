@@ -50,3 +50,23 @@ jobs:
           SPRING_DATASOURCE_USERNAME: root
           SPRING_DATASOURCE_PASSWORD: root_pass
           SPRING_PROFILES_ACTIVE: dev
+
+
+      - name: Build Docker Image
+        run: docker build -t meuapp:latest .
+
+      - name: Rodar Container Docker
+        run: docker run -d -p 8080:8080 --name meuapp-container meuapp:latest
+
+      - name: Verificar Logs do Container
+        run: docker logs meuapp-container
+
+      - name: Aguardar Container estar Pronto
+        run: |
+          until curl -s http://localhost:8080/auth | grep '"status":"UP"'; do
+            echo "Esperando o container..."
+            sleep 10
+          done
+
+      - name: Parar e Remover Container
+        run: docker stop meuapp-container && docker rm meuapp-container
