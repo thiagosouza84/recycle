@@ -61,12 +61,16 @@ jobs:
       - name: Verificar Logs do Container
         run: docker logs meuapp-container
 
-      - name: Aguardar Container estar Pronto
+
+      - name: Validar o Endpoint /auth
         run: |
-          until curl -s http://localhost:8080/auth | grep "[]"; do
-            echo "Esperando o container..."
-            sleep 10
-          done
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/auth)
+          if [ "$HTTP_STATUS" -ne 200 ]; then
+          echo "Falha: O endpoint /auth retornou status $HTTP_STATUS"
+          exit 1
+          else
+          echo "Sucesso: O endpoint /auth retornou status 200"
+          fi
 
       - name: Parar e Remover Container
         run: docker stop meuapp-container && docker rm meuapp-container
