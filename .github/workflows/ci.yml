@@ -27,6 +27,8 @@ jobs:
 
     - name: Build com Maven
       run: mvn clean install -DskipTests
+      env:
+        SPRING_PROFILES_ACTIVE: dev   # Ou "prod" para produção
 
 
   docker:
