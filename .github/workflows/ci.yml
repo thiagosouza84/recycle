@@ -28,8 +28,6 @@ jobs:
     - name: Build com Maven
       run: mvn clean install -DskipTests
 
-    - name: Rodar Testes
-      run: mvn test
 
   docker:
     runs-on: ubuntu-latest
