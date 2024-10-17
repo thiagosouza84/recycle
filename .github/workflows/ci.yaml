@@ -19,7 +19,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root_pass
           MYSQL_DATABASE: app
         ports:
-          - 3307:3306
+          - 3306:3306
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
@@ -38,7 +38,7 @@ jobs:
 
       - name: Aguardar MySQL estar pronto
         run: |
-          until mysqladmin ping --host=127.0.0.1 --port=3307 --silent; do
+          until mysqladmin ping --host=127.0.0.1 --port=3306 --silent; do
             echo "Esperando MySQL..."
             sleep 5
           done
