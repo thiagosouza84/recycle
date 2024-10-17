@@ -1,4 +1,4 @@
-name: Maven CI/CD Pipeline
+name: Maven CI Pipeline
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: root_pass
           MYSQL_DATABASE: app
         ports:
-          - 3306:3306
+          - 3307:3306
         options: >-
           --health-cmd="mysqladmin ping --silent"
           --health-interval=10s
@@ -38,7 +38,7 @@ jobs:
 
       - name: Aguardar MySQL estar pronto
         run: |
-          until mysqladmin ping --host=127.0.0.1 --port=3306 --silent; do
+          until mysqladmin ping --host=127.0.0.1 --port=3307 --silent; do
             echo "Esperando MySQL..."
             sleep 5
           done
@@ -46,7 +46,7 @@ jobs:
       - name: Build com Maven
         run: mvn clean install -DskipTests
         env:
-          SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/app
+          SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:6/app
           SPRING_DATASOURCE_USERNAME: root
           SPRING_DATASOURCE_PASSWORD: root_pass
           SPRING_PROFILES_ACTIVE: dev
