@@ -4,7 +4,7 @@ on:
       - "feature/main"
 
 env:
-  IMAGE_NAME: recycle-fiap-dev
+  IMAGE_NAME: lcsmelo/recycle
   AZURE_WEBAPP_NAME: recycle-fiap-dev
 
 jobs:
