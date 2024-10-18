@@ -16,12 +16,6 @@ Recycle é um projeto que visa otimizar a coleta de materiais recicláveis por m
 
 # Estrutura do Projeto
 
-## Pré-requisitos
-
-- Java 21
-- Git
-- Docker
-
 ## Instalação
 
 ### Requisitos
@@ -53,7 +47,5 @@ http://localhost:8080/auth
 1. **Substitua** `https://github.com/LCSMelo/recycle.git` pelo URL real do seu repositório.
 2. **Adicione detalhes sobre a API**: você pode incluir exemplos de endpoints, métodos HTTP e parâmetros, se necessário.
 3. **Licença**: inclua um arquivo de licença se não tiver um.
-
-Sinta-se à vontade para ajustar qualquer parte do texto para melhor refletir seu projeto! Se precisar de mais informações ou ajuda, é só avisar.
 
 
