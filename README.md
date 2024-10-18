@@ -14,9 +14,9 @@ Recycle é um projeto que visa otimizar a coleta de materiais recicláveis por m
 - **Docker**: Para a criação de contêineres da aplicação e do banco de dados.
 - **Maven**: Ferramenta de automação de build para gerenciar dependências.
 
-## Estrutura do Projeto
+# Estrutura do Projeto
 
-# Pré-requisitos
+## Pré-requisitos
 
 - Java 21
 - Git
