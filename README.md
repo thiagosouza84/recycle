@@ -43,9 +43,4 @@ docker compose up --build
 
 http://localhost:8080/auth
 
-### Notas Finais
-1. **Substitua** `https://github.com/LCSMelo/recycle.git` pelo URL real do seu repositório.
-2. **Adicione detalhes sobre a API**: você pode incluir exemplos de endpoints, métodos HTTP e parâmetros, se necessário.
-3. **Licença**: inclua um arquivo de licença se não tiver um.
-
 
