@@ -48,7 +48,7 @@ Recycle é um projeto que visa otimizar a coleta de materiais recicláveis por m
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/seu_usuario/recycle.git
+   git clone https://github.com/LCSMelo/recycle.git
    cd recycle
 
 ### Notas Finais
