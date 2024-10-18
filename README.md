@@ -35,9 +35,9 @@ Recycle é um projeto que visa otimizar a coleta de materiais recicláveis por m
 
 2. Build e execução
 
-```sh
-docker compose up --build
-```
+   ```sh
+   docker compose up --build
+   ```
 
 ## URL INICIO
 
